@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import logo from "../public/image/logo.svg";
+import logo from "../public/logo.svg";
 import Image from "next/image";
 
 const containerStyles = css`
