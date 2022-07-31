@@ -1,170 +1,183 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { useState } from "react";
-
-const maincontainerStyles = css`
+import Image from "next/image";
+import logo from "../public/icon-brand-recognition.svg";
+const containerStyles = css`
   background-color: #f0f1f6;
   display: flex;
-  margin-bottom: 50px;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 `;
-const MainContainer = styled.div`
-  ${maincontainerStyles};
+const Container = styled.div`
+  ${containerStyles};
+`;
+const headingStyles = css`
+  margin: 0;
+  padding-top: 25px;
+  font-size: 50px;
+  color: #35323e;
+`;
+const Heading = styled.h1`
+  ${headingStyles};
+`;
+const statDescriptionStyles = css`
+  text-align: center;
+  line-height: 1.6;
+  padding-top: 25px;
+  font-size: 24px;
+  font-weight: 500;
+  margin-top: 0px;
+  color: #a3a3ad;
+`;
+const StatDescription = styled.p`
+  ${statDescriptionStyles};
+`;
+const brandStyles = css`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+`;
+const Brand = styled.div`
+  ${brandStyles};
+`;
+const brandLeftStyles = css`
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  height: 320px;
+  width: 400px;
+  margin-bottom: 25px;
+  margin-top: 150px;
+  margin-right: 150px;
+  z-index: 2;
+`;
+const BrandLeft = styled.div`
+  ${brandLeftStyles};
+`;
+const brandMiddleStyles = css`
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  height: 320px;
+  width: 400px;
+  margin-bottom: 25px;
+  margin-top: 150px;
+  margin-right: 150px;
+  z-index: 2;
+`;
+const BrandMiddle = styled.div`
+  ${brandMiddleStyles};
+`;
+const brandRightStyles = css`
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  height: 320px;
+  width: 400px;
+  margin-bottom: 25px;
+  margin-top: 150px;
+  z-index: 2;
+`;
+const BrandRight = styled.div`
+  ${brandRightStyles};
 `;
 
-const inputContainerStyles = css`
-  background-image: url("/Meteor.svg");
-  height: 160px;
-  width: 80%;
-  display: flex;
-  position: relative;
-  bottom: 80px;
-  justify-content: center;
-  align-items: center;
-  z-index: 10;
-`;
-const InputContainer = styled.div`
-  ${inputContainerStyles};
-`;
-const inputStyles = css`
-  width: 70%;
-  border-radius: 8px;
-  border: none;
-  padding: 20px;
-  ::placeholder {
-    color: #efbcc0;
-    font-weight: 600;
-    font-size: 18px;
-  }
-`;
-const Input = styled.input`
-  ${inputStyles};
-`;
-const buttonStyles = css`
-  border-radius: 8px;
-  border: none;
-  padding: 20px 40px;
-  margin-left: 32px;
-  font-weight: 900;
-  font-size: 18px;
-  background-color: #2acfcf;
-  color: white;
-  cursor: pointer;
-`;
-const Button = styled.button`
-  ${buttonStyles};
-`;
-const linkContainerStyles = css`
-  width: 78%;
+const brandLogoStyles = css`
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+  background-color: #35323e;
   position: relative;
   bottom: 50px;
-  margin-bottom: 20px;
+  left: 30px;
 `;
-const LinkContainer = styled.div`
-  ${linkContainerStyles};
+const BrandLogo = styled.div`
+  ${brandLogoStyles};
 `;
-const containerInfoStyles = css`
-  display: flex;
-  justify-content: space-between;
-  border-radius: 8px;
-  border: none;
-  background-color: #fff;
+const brandHeadingStyles = css`
+  margin: 0;
+  padding-left: 30px;
+  color: #35323e;
 `;
-const ContainerInfo = styled.div`
-  ${containerInfoStyles};
+const BrandHeading = styled.h2`
+  ${brandHeadingStyles};
 `;
-const actualLinkStyles = css`
-  padding-left: 5px;
-  margin-left: 20px;
+const branddecsStyles = css`
+  padding: 5px 30px 30px 30px;
   font-size: 18px;
+  color: #a3a3ad;
+  font-weight: 500;
 `;
-const ActualLink = styled.p`
-  ${actualLinkStyles};
+const BrandDesc = styled.p`
+  ${branddecsStyles};
 `;
-const shortenLinkContainerStyles = css`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const brandimgStyles = css`
+  padding: 5px 30px;
+  margin-top: 25px;
 `;
-const ShortenLinkContainer = styled.div`
-  ${shortenLinkContainerStyles};
+const BrandImage = styled.div`
+  ${brandimgStyles};
 `;
-const shortenLinkStyles = css`
-  font-size: 18px;
+const hLineStyles = css`
+  border: 6px solid;
+  color: #2acfcf;
+  width: 60%;
+  position: relative;
+  bottom: 210px;
 `;
-const ShortenLink = styled.p`
-  ${shortenLinkStyles};
-`;
-const copyButtonStyles = css`
-  padding: 12px 40px;
-  margin-left: 20px;
-  margin-right: 40px;
-  border-radius: 8px;
-  border: none;
-  background-color: #2acfcf;
-  color: white;
-  cursor: pointer;
-  font-weight: 900;
-  font-size: 15px;
-  &:hover {
-    background-color: #3a3053;
-    font-size: 16px;
-  }
-`;
-const CopyButton = styled.button`
-  ${copyButtonStyles};
+const HLine = styled.hr`
+  ${hLineStyles};
 `;
 
 const Info = () => {
-  const [url, setUrl] = useState("");
-  const handleChange = (e) => {
-    setUrl(e.target.value);
-  };
   return (
-    <MainContainer>
-      <InputContainer>
-        <Input
-          placeholder="Shorten a link here..."
-          value={url}
-          onChange={handleChange}
-        ></Input>
-        <Button>Shorten it!</Button>
-      </InputContainer>
-      <LinkContainer>
-        <ContainerInfo>
-          <ActualLink>
-            https://www.w3schools.com/cssref/css_units.asp
-          </ActualLink>
-          <ShortenLinkContainer>
-            <ShortenLink>Needtoshortthelink</ShortenLink>
-            <CopyButton>Copy</CopyButton>
-          </ShortenLinkContainer>
-        </ContainerInfo>
-      </LinkContainer>
-      <LinkContainer>
-        <ContainerInfo>
-          <ActualLink>
-            https://www.w3schools.com/cssref/css_units.asp
-          </ActualLink>
-          <ShortenLinkContainer>
-            <ShortenLink>Needtoshortthelink</ShortenLink>
-            <CopyButton>Copy</CopyButton>
-          </ShortenLinkContainer>
-        </ContainerInfo>
-      </LinkContainer>
-      <LinkContainer>
-        <ContainerInfo>
-          <ActualLink>
-            https://www.w3schools.com/cssref/css_units.asp
-          </ActualLink>
-          <ShortenLinkContainer>
-            <ShortenLink>Needtoshortthelink</ShortenLink>
-            <CopyButton>Copy</CopyButton>
-          </ShortenLinkContainer>
-        </ContainerInfo>
-      </LinkContainer>
-    </MainContainer>
+    <Container>
+      <Heading>Advanced Statistics</Heading>
+      <StatDescription>
+        Track how your links are performing across the web with<br></br>our
+        advanced statistics dashboard.
+      </StatDescription>
+      <Brand>
+        <BrandLeft>
+          <BrandLogo>
+            <BrandImage>
+              <Image src={logo} />
+            </BrandImage>
+          </BrandLogo>
+          <BrandHeading>Brand Recognition</BrandHeading>
+          <BrandDesc>
+            Boost your brand recognition with each click.Generic links don't
+            mean a thing . Branded links help instil confidence in your content.
+          </BrandDesc>
+        </BrandLeft>
+        <BrandMiddle>
+          <BrandLogo>
+            <BrandImage>
+              <Image src={logo} />
+            </BrandImage>
+          </BrandLogo>
+          <BrandHeading>Brand Recognition</BrandHeading>
+          <BrandDesc>
+            Boost your brand recognition with each click.Generic links don't
+            mean a thing . Branded links help instil confidence in your content.
+          </BrandDesc>
+        </BrandMiddle>
+        <BrandRight>
+          <BrandLogo>
+            <BrandImage>
+              <Image src={logo} />
+            </BrandImage>
+          </BrandLogo>
+          <BrandHeading>Brand Recognition</BrandHeading>
+          <BrandDesc>
+            Boost your brand recognition with each click.Generic links don't
+            mean a thing . Branded links help instil confidence in your content.
+          </BrandDesc>
+        </BrandRight>
+      </Brand>
+      <HLine></HLine>
+    </Container>
   );
 };
 

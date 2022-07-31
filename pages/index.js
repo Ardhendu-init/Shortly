@@ -2,6 +2,7 @@ import Head from "next/head";
 
 import Navbar from "../components/Navbar";
 import Slider from "../components/Slider";
+import Converter from "../components/Converter";
 import Info from "../components/Info";
 export default function Home() {
   return (
@@ -13,6 +14,8 @@ export default function Home() {
       </Head>
       <Navbar />
       <Slider />
+      <Converter />
+
       <Info />
     </>
   );
