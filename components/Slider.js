@@ -1,10 +1,13 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import people from "../public/image/people working.png";
+import people from "../public/people working.png";
 import Image from "next/image";
 const containerStyles = css`
   margin-top: 50px;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 const Container = styled.div`
   ${containerStyles};
@@ -19,7 +22,10 @@ const headingStyles = css`
 const Heading = styled.h1`
   ${headingStyles};
 `;
-const imageStyles = css``;
+const imageStyles = css`
+  width: 400px;
+  margin-top: -10px;
+`;
 const ImageContainer = styled.div`
   ${imageStyles};
 `;
