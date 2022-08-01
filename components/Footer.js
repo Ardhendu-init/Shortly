@@ -9,7 +9,7 @@ import logo from "../public/logo.svg";
 const containerStyles = css`
   display: flex;
   background-color: #232027;
-  height: 36vh;
+  padding-bottom: 50px;
   padding-left: 100px;
 `;
 const Container = styled.div`

@@ -46,8 +46,8 @@ const brandLeftStyles = css`
   display: flex;
   flex-direction: column;
   background-color: #fff;
-  height: 320px;
-  width: 400px;
+  height: 300px;
+  width: 360px;
   margin-bottom: 25px;
   margin-top: 150px;
   margin-right: 150px;
@@ -60,8 +60,8 @@ const brandMiddleStyles = css`
   display: flex;
   flex-direction: column;
   background-color: #fff;
-  height: 320px;
-  width: 400px;
+  height: 300px;
+  width: 360px;
   margin-bottom: 25px;
   margin-top: 150px;
   margin-right: 150px;
@@ -74,8 +74,8 @@ const brandRightStyles = css`
   display: flex;
   flex-direction: column;
   background-color: #fff;
-  height: 320px;
-  width: 400px;
+  height: 300px;
+  width: 360px;
   margin-bottom: 25px;
   margin-top: 150px;
   z-index: 2;
@@ -86,11 +86,11 @@ const BrandRight = styled.div`
 
 const brandLogoStyles = css`
   border-radius: 50%;
-  height: 100px;
-  width: 100px;
-  background-color: #35323e;
+  height: 90px;
+  width: 90px;
+  background-color: #3a3053;
   position: relative;
-  bottom: 50px;
+  bottom: 40px;
   left: 30px;
 `;
 const BrandLogo = styled.div`
@@ -114,8 +114,7 @@ const BrandDesc = styled.p`
   ${branddecsStyles};
 `;
 const brandimgStyles = css`
-  padding: 5px 30px;
-  margin-top: 25px;
+  padding: 20px 25px;
 `;
 const BrandImage = styled.div`
   ${brandimgStyles};

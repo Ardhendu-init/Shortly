@@ -2,12 +2,12 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
 const containerStyles = css`
-  height: 30vh;
   background-image: url("/Meteor.png");
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  padding-bottom: 30px;
 `;
 const Container = styled.div`
   ${containerStyles};
