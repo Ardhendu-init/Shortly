@@ -1,11 +1,11 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import logo from "../public/logo.svg";
+import logo from "../public/logo-top.svg";
 import Image from "next/image";
 
 const containerStyles = css`
   display: flex;
-  ${"" /* align-items: center; */}
+
   margin-top: 20px;
 `;
 const Container = styled.div`

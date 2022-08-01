@@ -4,6 +4,8 @@ import Navbar from "../components/Navbar";
 import Slider from "../components/Slider";
 import Converter from "../components/Converter";
 import Info from "../components/Info";
+import NewsLetter from "../components/NewsLetter";
+import Footer from "../components/Footer";
 export default function Home() {
   return (
     <>
@@ -15,8 +17,9 @@ export default function Home() {
       <Navbar />
       <Slider />
       <Converter />
-
       <Info />
+      <NewsLetter />
+      <Footer />
     </>
   );
 }

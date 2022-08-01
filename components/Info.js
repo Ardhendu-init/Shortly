@@ -8,6 +8,7 @@ const containerStyles = css`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-bottom: 100px;
 `;
 const Container = styled.div`
   ${containerStyles};

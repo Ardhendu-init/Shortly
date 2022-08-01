@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { useState } from "react";
-
+import axios from "axios";
 const maincontainerStyles = css`
   background-color: #f0f1f6;
   display: flex;
@@ -17,15 +17,22 @@ const inputContainerStyles = css`
   background-image: url("/Meteor.png");
   height: 160px;
   width: 80%;
-  display: flex;
   position: relative;
   bottom: 80px;
-  justify-content: center;
-  align-items: center;
   z-index: 10;
 `;
 const InputContainer = styled.div`
   ${inputContainerStyles};
+`;
+const inputFormStyles = css`
+  width: 90%;
+  display: flex;
+  margin-top: 50px;
+  justify-content: center;
+  align-items: center;
+`;
+const InputForm = styled.form`
+  ${inputFormStyles};
 `;
 const inputStyles = css`
   width: 70%;
@@ -119,52 +126,57 @@ const CopyButton = styled.button`
 
 const Converter = () => {
   const [url, setUrl] = useState("");
-  const handleChange = (e) => {
-    setUrl(e.target.value);
+  const [info, setInfo] = useState(null);
+  const [copyText, setCopyText] = useState("");
+  const [btnState, setBtnState] = useState(false);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setUrl("");
+    const API_Base = "https://api.shrtco.de/v2/";
+
+    const fetchLink = async () => {
+      try {
+        const response = await axios.get(`${API_Base}shorten?url=${url}`);
+        setInfo(response.data.result);
+        setCopyText(response.data.result.full_short_link2);
+      } catch (error) {
+        alert("Invalid URL: " + url);
+      }
+    };
+    fetchLink();
   };
+  const handleClick = () => {
+    navigator.clipboard.writeText(copyText);
+    setBtnState(true);
+  };
+
   return (
     <MainContainer>
       <InputContainer>
-        <Input
-          placeholder="Shorten a link here..."
-          value={url}
-          onChange={handleChange}
-        ></Input>
-        <Button>Shorten it!</Button>
+        <InputForm onSubmit={handleSubmit}>
+          <Input
+            type="text"
+            placeholder="Shorten a link here..."
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+          ></Input>
+          <Button type="submit">Shorten it!</Button>
+        </InputForm>
       </InputContainer>
-      <LinkContainer>
-        <ContainerInfo>
-          <ActualLink>
-            https://www.w3schools.com/cssref/css_units.asp
-          </ActualLink>
-          <ShortenLinkContainer>
-            <ShortenLink>Needtoshortthelink</ShortenLink>
-            <CopyButton>Copy</CopyButton>
-          </ShortenLinkContainer>
-        </ContainerInfo>
-      </LinkContainer>
-      <LinkContainer>
-        <ContainerInfo>
-          <ActualLink>
-            https://www.w3schools.com/cssref/css_units.asp
-          </ActualLink>
-          <ShortenLinkContainer>
-            <ShortenLink>Needtoshortthelink</ShortenLink>
-            <CopyButton>Copy</CopyButton>
-          </ShortenLinkContainer>
-        </ContainerInfo>
-      </LinkContainer>
-      <LinkContainer>
-        <ContainerInfo>
-          <ActualLink>
-            https://www.w3schools.com/cssref/css_units.asp
-          </ActualLink>
-          <ShortenLinkContainer>
-            <ShortenLink>Needtoshortthelink</ShortenLink>
-            <CopyButton>Copy</CopyButton>
-          </ShortenLinkContainer>
-        </ContainerInfo>
-      </LinkContainer>
+      {info && (
+        <LinkContainer>
+          <ContainerInfo>
+            <ActualLink>{info.original_link}</ActualLink>
+            <ShortenLinkContainer>
+              <ShortenLink>{info.full_short_link2}</ShortenLink>
+
+              <CopyButton onClick={handleClick}>
+                {btnState == true ? "Copied" : "Copy"}
+              </CopyButton>
+            </ShortenLinkContainer>
+          </ContainerInfo>
+        </LinkContainer>
+      )}
     </MainContainer>
   );
 };
