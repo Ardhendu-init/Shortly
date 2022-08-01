@@ -36,7 +36,7 @@ const Slider = () => {
       <Heading>MORE THAN JUST</Heading>
       <Heading>SHORTER LINKS</Heading>
       <ImageContainer>
-        <Image src={people} />
+        <Image alt="People-working" src={people} />
       </ImageContainer>
     </Container>
   );

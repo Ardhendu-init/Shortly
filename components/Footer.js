@@ -97,21 +97,21 @@ const Footer = () => {
     <Container>
       <Left>
         <Logo>
-          <Image src={logo} />
+          <Image alt="Logo" src={logo} />
         </Logo>
 
         <SocialContainer>
           <SocialIcons>
-            <Image src={fb} />
+            <Image alt="Facebook" src={fb} />
           </SocialIcons>
           <SocialIcons>
-            <Image src={twitter} />
+            <Image alt="Twitter" src={twitter} />
           </SocialIcons>
           <SocialIcons>
-            <Image src={pinterest} />
+            <Image alt="Pinterest" src={pinterest} />
           </SocialIcons>
           <SocialIcons>
-            <Image src={insta} />
+            <Image alt="Instagram" src={insta} />
           </SocialIcons>
         </SocialContainer>
       </Left>

@@ -142,36 +142,36 @@ const Info = () => {
         <BrandLeft>
           <BrandLogo>
             <BrandImage>
-              <Image src={logo} />
+              <Image alt="Logo" src={logo} />
             </BrandImage>
           </BrandLogo>
           <BrandHeading>Brand Recognition</BrandHeading>
           <BrandDesc>
-            Boost your brand recognition with each click.Generic links don't
+            Boost your brand recognition with each click.Generic links do not
             mean a thing . Branded links help instil confidence in your content.
           </BrandDesc>
         </BrandLeft>
         <BrandMiddle>
           <BrandLogo>
             <BrandImage>
-              <Image src={logo} />
+              <Image alt="Logo2" src={logo} />
             </BrandImage>
           </BrandLogo>
           <BrandHeading>Brand Recognition</BrandHeading>
           <BrandDesc>
-            Boost your brand recognition with each click.Generic links don't
+            Boost your brand recognition with each click.Generic links do not
             mean a thing . Branded links help instil confidence in your content.
           </BrandDesc>
         </BrandMiddle>
         <BrandRight>
           <BrandLogo>
             <BrandImage>
-              <Image src={logo} />
+              <Image alt="Logo3" src={logo} />
             </BrandImage>
           </BrandLogo>
           <BrandHeading>Brand Recognition</BrandHeading>
           <BrandDesc>
-            Boost your brand recognition with each click.Generic links don't
+            Boost your brand recognition with each click.Generic links do not
             mean a thing . Branded links help instil confidence in your content.
           </BrandDesc>
         </BrandRight>

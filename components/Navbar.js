@@ -43,7 +43,7 @@ const Navbar = () => {
   return (
     <Container>
       <Logo>
-        <Image src={logo} />
+        <Image alt="Logo" src={logo} />
       </Logo>
 
       <Item>
