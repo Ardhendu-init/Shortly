@@ -2,10 +2,10 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { useState } from "react";
 import axios from "axios";
+import mobile from "./responsive";
 const maincontainerStyles = css`
   background-color: #f0f1f6;
   display: flex;
-
   flex-direction: column;
   align-items: center;
 `;
@@ -20,6 +20,10 @@ const inputContainerStyles = css`
   position: relative;
   bottom: 80px;
   z-index: 10;
+  ${mobile({
+    width: "90%",
+    height: "190px",
+  })}
 `;
 const InputContainer = styled.div`
   ${inputContainerStyles};
@@ -30,6 +34,13 @@ const inputFormStyles = css`
   margin-top: 50px;
   justify-content: center;
   align-items: center;
+  ${mobile({
+    display: "flex",
+    flexDirection: "column",
+    width: "100%",
+    height: "100%",
+    marginTop: "0px",
+  })}
 `;
 const InputForm = styled.form`
   ${inputFormStyles};
@@ -44,6 +55,13 @@ const inputStyles = css`
     font-weight: 600;
     font-size: 18px;
   }
+  ${mobile({
+    width: "80%",
+    padding: "15px",
+    marginBottom: "40px",
+    border: "3px solid #f65159",
+    borderRadius: "4px",
+  })}
 `;
 const Input = styled.input`
   ${inputStyles};
@@ -58,6 +76,11 @@ const buttonStyles = css`
   background-color: #2acfcf;
   color: white;
   cursor: pointer;
+  ${mobile({
+    width: "90%",
+    padding: "15px",
+    margin: "0px",
+  })}
 `;
 const Button = styled.button`
   ${buttonStyles};
@@ -67,6 +90,9 @@ const linkContainerStyles = css`
   position: relative;
   bottom: 40px;
   margin-bottom: 20px;
+  ${mobile({
+    width: "90%",
+  })}
 `;
 const LinkContainer = styled.div`
   ${linkContainerStyles};
@@ -77,6 +103,10 @@ const containerInfoStyles = css`
   border-radius: 8px;
   border: none;
   background-color: #fff;
+  ${mobile({
+    flexDirection: "column",
+    justifyContent: "none",
+  })}
 `;
 const ContainerInfo = styled.div`
   ${containerInfoStyles};
@@ -85,6 +115,10 @@ const actualLinkStyles = css`
   padding-left: 5px;
   margin-left: 20px;
   font-size: 18px;
+  ${mobile({
+    margin: "10px 0px 0px 10px",
+    fontSize: "16px",
+  })}
 `;
 const ActualLink = styled.p`
   ${actualLinkStyles};
@@ -93,6 +127,10 @@ const shortenLinkContainerStyles = css`
   display: flex;
   justify-content: center;
   align-items: center;
+  ${mobile({
+    flexDirection: "column",
+    alignItems: "flex-start",
+  })}
 `;
 const ShortenLinkContainer = styled.div`
   ${shortenLinkContainerStyles};
@@ -100,6 +138,7 @@ const ShortenLinkContainer = styled.div`
 const shortenLinkStyles = css`
   font-size: 18px;
   color: #2acfcf;
+  ${mobile({ margin: "5px 0px 10px 15px", fontSize: "16px" })}
 `;
 const ShortenLink = styled.p`
   ${shortenLinkStyles};
@@ -119,9 +158,26 @@ const copyButtonStyles = css`
     background-color: #3a3053;
     font-size: 16px;
   }
+  ${mobile({
+    width: "90%",
+    margin: "0px 0px 15px 15px",
+  })}
 `;
 const CopyButton = styled.button`
   ${copyButtonStyles};
+`;
+const hLineStyles = css`
+  border: none;
+  height: 1px;
+
+  background-color: lightgray;
+  width: 99%;
+  @media (min-width: 376px) {
+    display: none;
+  }
+`;
+const HLine = styled.hr`
+  ${hLineStyles};
 `;
 
 const Converter = () => {
@@ -137,6 +193,7 @@ const Converter = () => {
     const fetchLink = async () => {
       try {
         const response = await axios.get(`${API_Base}shorten?url=${url}`);
+        console.log(response.data);
         setInfo(response.data.result);
         setCopyText(response.data.result.full_short_link2);
       } catch (error) {
@@ -171,7 +228,7 @@ const Converter = () => {
               <ShortenLink>{info.full_short_link2}</ShortenLink>
 
               <CopyButton onClick={handleClick}>
-                {btnState == true ? "Copied" : "Copy"}
+                {btnState == true ? "Copied !" : "Copy"}
               </CopyButton>
             </ShortenLinkContainer>
           </ContainerInfo>

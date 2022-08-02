@@ -2,6 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+Site Link: https://shorttlly.netlify.app/
 First, run the development server:
 
 ```bash
