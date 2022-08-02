@@ -182,19 +182,24 @@ const HLine = styled.hr`
 
 const Converter = () => {
   const [url, setUrl] = useState("");
-  const [info, setInfo] = useState(null);
+  const [info, setInfo] = useState([]);
   const [copyText, setCopyText] = useState("");
   const [btnState, setBtnState] = useState(false);
+  const API_Base = "https://api.shrtco.de/v2/";
   const handleSubmit = (e) => {
     e.preventDefault();
     setUrl("");
-    const API_Base = "https://api.shrtco.de/v2/";
-
     const fetchLink = async () => {
       try {
         const response = await axios.get(`${API_Base}shorten?url=${url}`);
-        console.log(response.data);
-        setInfo(response.data.result);
+
+        const newData = await {
+          res: response.data.result,
+
+          set: false,
+        };
+        setInfo([...info, newData]);
+
         setCopyText(response.data.result.full_short_link2);
       } catch (error) {
         alert("Invalid URL: " + url);
@@ -202,9 +207,15 @@ const Converter = () => {
     };
     fetchLink();
   };
-  const handleClick = () => {
+
+  const handleClick = (id) => {
     navigator.clipboard.writeText(copyText);
     setBtnState(true);
+    const findItem = info.find((item) => item.res.code == id);
+    const newItem = info.filter((item) => item.res.code != id);
+    findItem.set = true;
+    setInfo([...newItem, findItem]);
+    console.log(info);
   };
 
   return (
@@ -220,20 +231,24 @@ const Converter = () => {
           <Button type="submit">Shorten it!</Button>
         </InputForm>
       </InputContainer>
-      {info && (
-        <LinkContainer>
-          <ContainerInfo>
-            <ActualLink>{info.original_link}</ActualLink>
-            <ShortenLinkContainer>
-              <ShortenLink>{info.full_short_link2}</ShortenLink>
+      {info.length > 0 &&
+        info.map((item) => {
+          return (
+            <LinkContainer key={item.res.code}>
+              <ContainerInfo>
+                <ActualLink>{item.res.original_link}</ActualLink>
+                <HLine></HLine>
+                <ShortenLinkContainer>
+                  <ShortenLink>{item.res.full_short_link2}</ShortenLink>
 
-              <CopyButton onClick={handleClick}>
-                {btnState == true ? "Copied !" : "Copy"}
-              </CopyButton>
-            </ShortenLinkContainer>
-          </ContainerInfo>
-        </LinkContainer>
-      )}
+                  <CopyButton onClick={() => handleClick(item.res.code)}>
+                    {item.set == true ? "Copied !" : "Copy"}
+                  </CopyButton>
+                </ShortenLinkContainer>
+              </ContainerInfo>
+            </LinkContainer>
+          );
+        })}
     </MainContainer>
   );
 };

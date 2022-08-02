@@ -10,6 +10,7 @@ const containerStyles = css`
   justify-content: center;
   align-items: center;
   padding-bottom: 100px;
+  position: relative;
   ${mobile({
     paddingBottom: "0px",
   })}
@@ -68,6 +69,7 @@ const brandLeftStyles = css`
   width: 360px;
   margin: 50px;
   z-index: 2;
+
   ${mobile({
     height: "250px",
     width: "340px",
@@ -78,6 +80,25 @@ const brandLeftStyles = css`
 `;
 const BrandLeft = styled.div`
   ${brandLeftStyles};
+`;
+const brandcenterStyles = css`
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  height: 300px;
+  width: 360px;
+  margin: 50px;
+  z-index: 2;
+  ${mobile({
+    height: "250px",
+    width: "340px",
+    alignItems: "center",
+    margin: "50px  10px",
+    marginLeft: "0px",
+  })}
+`;
+const BrandCenter = styled.div`
+  ${brandcenterStyles};
 `;
 
 const brandLogoStyles = css`
@@ -137,17 +158,14 @@ const hLineStyles = css`
   border: 6px solid;
   color: #2acfcf;
   width: 60%;
-  position: relative;
-  bottom: 210px;
-  ${
-    "" /* ${mobile({
-    width: "0px",
+  position: absolute;
+  top: 54%;
+  ${mobile({
+    width: "662px",
     border: "4px solid",
-    position: "relative",
-    height: "300px",
-    bottom: "400px",
-  })} */
-  }
+    position: "absolute",
+    transform: "rotate(90deg)",
+  })}
 `;
 const HLine = styled.hr`
   ${hLineStyles};
@@ -175,7 +193,7 @@ const Info = () => {
           </BrandDesc>
         </BrandLeft>
 
-        <BrandLeft>
+        <BrandCenter>
           <BrandLogo>
             <BrandImage>
               <Image alt="Logo" src={logo} />
@@ -186,8 +204,8 @@ const Info = () => {
             Boost your brand recognition with each click.Generic links do not
             mean a thing . Branded links help instil confidence in your content.
           </BrandDesc>
-        </BrandLeft>
-        <BrandLeft>
+        </BrandCenter>
+        <BrandCenter>
           <BrandLogo>
             <BrandImage>
               <Image alt="Logo" src={logo} />
@@ -198,7 +216,7 @@ const Info = () => {
             Boost your brand recognition with each click.Generic links do not
             mean a thing . Branded links help instil confidence in your content.
           </BrandDesc>
-        </BrandLeft>
+        </BrandCenter>
       </Brand>
       <HLine></HLine>
     </Container>
