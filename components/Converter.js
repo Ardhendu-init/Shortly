@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import mobile from "./responsive";
 const maincontainerStyles = css`
@@ -143,29 +143,38 @@ const shortenLinkStyles = css`
 const ShortenLink = styled.p`
   ${shortenLinkStyles};
 `;
-const copyButtonStyles = css`
+const btnDivStyles = css`
+  margin: 0px 15px 0px 15px;
+`;
+const BtnDiv = styled.div`
+  ${btnDivStyles};
+`;
+const copyButtonStyles = (props) => css`
   padding: 12px 40px;
-  margin-left: 20px;
-  margin-right: 40px;
+  width: 100%;
   border-radius: 8px;
   border: none;
-  background-color: #2acfcf;
+
   color: white;
   cursor: pointer;
   font-weight: 900;
   font-size: 15px;
+  background-color: ${props.copied ? "#3a3053" : "#2acfcf"};
+
   &:hover {
     background-color: #3a3053;
     font-size: 16px;
   }
+
   ${mobile({
     width: "90%",
     margin: "0px 0px 15px 15px",
-  })}
+  })};
 `;
 const CopyButton = styled.button`
   ${copyButtonStyles};
 `;
+
 const hLineStyles = css`
   border: none;
   height: 1px;
@@ -184,7 +193,7 @@ const Converter = () => {
   const [url, setUrl] = useState("");
   const [info, setInfo] = useState([]);
   const [copyText, setCopyText] = useState("");
-  const [btnState, setBtnState] = useState(false);
+
   const API_Base = "https://api.shrtco.de/v2/";
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -199,23 +208,20 @@ const Converter = () => {
           set: false,
         };
         setInfo([...info, newData]);
-
-        setCopyText(response.data.result.full_short_link2);
       } catch (error) {
         alert("Invalid URL: " + url);
       }
     };
     fetchLink();
   };
-
-  const handleClick = (id) => {
+  useEffect(() => {
     navigator.clipboard.writeText(copyText);
-    setBtnState(true);
+  }, [copyText]);
+  const handleClick = (id) => {
     const findItem = info.find((item) => item.res.code == id);
-    const newItem = info.filter((item) => item.res.code != id);
     findItem.set = true;
-    setInfo([...newItem, findItem]);
-    console.log(info);
+    setInfo([...info]);
+    setCopyText(findItem.res.full_short_link2);
   };
 
   return (
@@ -240,10 +246,15 @@ const Converter = () => {
                 <HLine></HLine>
                 <ShortenLinkContainer>
                   <ShortenLink>{item.res.full_short_link2}</ShortenLink>
-
-                  <CopyButton onClick={() => handleClick(item.res.code)}>
-                    {item.set == true ? "Copied !" : "Copy"}
-                  </CopyButton>
+                  <BtnDiv onClick={() => handleClick(item.res.code)}>
+                    {item.set == true ? (
+                      <CopyButton copied allow="clipboard-read">
+                        Copied !
+                      </CopyButton>
+                    ) : (
+                      <CopyButton>Copy</CopyButton>
+                    )}
+                  </BtnDiv>
                 </ShortenLinkContainer>
               </ContainerInfo>
             </LinkContainer>
